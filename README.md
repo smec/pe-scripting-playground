@@ -26,3 +26,5 @@ Please download the correct version for your operating system, install it, and s
 You are now set to give the scripting capabilities a try. You can use the "Sandbox.groovy" class to get some feedback on the results of the scripts.
 
 Pricing Engine uses Groovy for its scripts. The official Groovy documentation can be found [here](https://docs.groovy-lang.org/next/html/documentation/).
+
+You can find a collection [script examples here](./script-examples.md), and [best practices here](./best-practices.md).
