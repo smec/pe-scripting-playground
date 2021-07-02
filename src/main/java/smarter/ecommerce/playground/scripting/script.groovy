@@ -68,6 +68,16 @@ def offer = buildEnrichedOffer()
  * Sandbox.groovy contains some examples in a structured form.
  *****************************************************************************/
 
+// try to find competitor "A" and get their price
+def priceOfCompetitorA = offer.competitors.find {it.name == "OnlineShopper"}?.price?.amount
+// if the competitor was found and our price is higher than theirs
+if (priceOfCompetitorA != null && offer.price.amount > priceOfCompetitorA) {
+    println "Reprice dat sh!te"
+} else {
+    println "Don't"
+}
+
+
 import static smarter.ecommerce.repricing_pipeline.main.server.internal.logic.entities.Availability.*
 
 // declare a "closure" to find a list of competitors who have the item in stock
