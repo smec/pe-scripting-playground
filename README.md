@@ -27,4 +27,4 @@ You are now set to give the scripting capabilities a try. You can use the "Sandb
 
 Pricing Engine uses Groovy for its scripts. The official Groovy documentation can be found [here](https://docs.groovy-lang.org/next/html/documentation/).
 
-You can find a collection [script examples here](./script-examples.md), and [best practices here](./best-practices.md).
+You can find a collection of [script examples here](./script-examples.md), and [best practices here](./best-practices.md).
