@@ -1,4 +1,6 @@
-# Filters & Conditions
+# Script Examples
+
+## Filters & Conditions
 
 This section contains basic examples that give you an idea how to script Filters and Conditions.
 
@@ -148,7 +150,7 @@ The brand is not "ABC" (case-insensitive):
 offer.brand.toLowerCase() != "abc"
 ```
 
-# Repricing Functions
+## Repricing Functions
 
 This section contains basic examples that give you an idea how to script repricing functions.
 
