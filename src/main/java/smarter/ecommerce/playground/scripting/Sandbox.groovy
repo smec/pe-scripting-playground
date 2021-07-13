@@ -134,7 +134,7 @@ class Sandbox {
         return new EnrichedOffer(
                 new Price(16.79, Currency.EUR),
                 InStock,
-                new SalePrice(16.79, Currency.EUR, new Validity(0, Long.MAX_VALUE)),
+                new SalePrice(16.79, Currency.EUR),
                 "Brand", "CoolProduct 1337x", "Description of CoolProduct 1337x",
                 Arrays.asList(
                         new Category("mainCategoryL1", "Electronics"),

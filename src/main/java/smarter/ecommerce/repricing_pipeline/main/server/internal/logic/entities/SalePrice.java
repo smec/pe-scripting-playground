@@ -17,6 +17,10 @@ public class SalePrice {
         return validity;
     }
 
+    public SalePrice(Double amount, Currency currency) {
+        this(amount, currency, new Validity(0L, Long.MAX_VALUE));
+    }
+
     public SalePrice(Double amount, Currency currency, Validity validity) {
         this.amount = amount;
         this.currency = currency;
