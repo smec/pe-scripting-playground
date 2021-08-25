@@ -228,3 +228,133 @@ I want to be on average with the competition:
 ```groovy
 offer.competitors.collect { it.price.amount }.sum() / offer.competitors.size()
 ```
+## Using the script library
+For an easy approach there is a library in place that covers common use cases for scripted filter, condition and repricing.
+### Use cases
+* Checks if the offer has at least a given amount of competitors.
+```groovy
+lib.hasAtLeastXCompetitors(2)
+```
+
+*  Check if a specific competitor is the only one competing with the offer.
+```groovy
+lib.isXMyOnlyCompetitor("amazon")
+```
+
+* Retrieve the cheapest competitors price for the offer or use a given default value.
+```groovy
+lib.getCheapestCompetitorPrice(offer.price.amount)
+```
+
+* Retrieve the cheapest competitors price for the offer while ignoring a specific competitor or use a given default value that is used when there are no competitors.
+```groovy
+lib.getCheapestCompetitorPriceIgnoring("amazon", offer.price.amount)
+```
+
+/** Retrieve cheapest competitors price for the offer and reduce that price by a given amount or uses a default price when no competitor is found.
+```groovy
+lib.getCheapestCompetitorPriceReducedBy(0.05, offer.price.amount)
+```
+
+### Method Composition
+Beside the existing shorthand methods, new use cases can easily be composed by using the underlying functionality.
+
+* [Filter](#competitor-filter) competitors while [excluding](#competitor-exclusion) certain ones and returning their price, or a default value instead when no competitor was found.
+```groovy
+lib.getCompetitorPrice(lib.cheapest(), lib.excluding("amazon"), offer.price.amount)
+```
+
+* [Filter](#competitor-filter) competition for a price reference and use a [modulator](#competitor-price-modulators) to position the price relative to that competitor's price. A default value is used when the filter yields no competition.
+```groovy
+lib.positionToCompetitor(lib.cheapest(), lib.subtract(0.05), offer.price.amount)
+```
+
+#### Competitor Exclusion
+Competitor Exclusions are used in combination with [filters](#competitor-filter) to exclude competitors that are not relevant.
+
+* Exclude a competitor if its name matches the given name.
+```groovy
+lib.cheapest(lib.excluding("amazon"))
+```
+
+* Exclude a competitor if its name is contained in the list of names.
+```groovy
+lib.cheapest(lib.excluding(["amazon", "ebay"]))
+```
+
+#### Competitor Filter
+Competitor Filters are used in shorthand methods to find a competitor based upon a certain criteria.
+* Find a competitor by name
+```groovy
+lib.byName("amazon")
+```
+
+* Find competitor with the cheapest price
+```groovy
+lib.cheapest()
+```
+
+* Find competitor with the cheapest price while using an [exclusion](#competitor-exclusion) to reduce the set of relevant competitors.
+```groovy
+lib.cheapest(lib.excluding("amazon"))
+```
+
+* Find the nth cheapest competitor
+```groovy
+lib.nthCheapest(2)
+```
+
+* Find nth cheapest competitor while using an [exclusion](#competitor-exclusion) to reduce the set of relevant competitors.
+```groovy
+lib.nthCheapest(2, lib.excluding("amazon"))
+```
+
+* Find competitors for the most expensive price
+```groovy
+lib.mostExpensive()
+```
+
+* Find competitor for the most expensive price while using an [exclusion](#competitor-exclusion) to reduce the set of relevant competitors.
+```groovy
+lib.mostExpensive(lib.excluding("amazon"))
+```
+
+* Find the nth most expensive competitor
+```groovy
+lib.nthMostExpensive(2)
+```
+
+* Retrieve the nth most expensive competitor while using an [exclusion](#competitor-exclusion) to reduce the set of relevant competitors.
+```groovy
+lib.nthMostExpensive(2, lib.excluding("amazon"))
+```
+
+#### Competitor Price Modulators
+Price Modulators are used in [method composition](#method-composition) to relatively position the new offer price to the price provided by the shorthand method.
+
+* Reduce price by a given percentage
+```groovy
+lib.percentBelow(5.00)
+```
+
+* Increase price by a given percentage
+```groovy
+lib.percentAbove(5.00)
+```
+* Reduce price by a given amount
+```groovy
+lib.subtract(0.05)
+```
+* Increase price by a given amount
+```groovy
+lib.add(0.05)
+```
+
+### Examples
+```groovy
+if (lib.isXMyOnlyCompetitor("amazon")) {
+    offer.price.amount
+} else {
+    lib.getCheapestCompetitorPriceReducedBy(0.05, offer.price.amount)
+}
+```
