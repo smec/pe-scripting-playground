@@ -42,14 +42,14 @@ offer.price.amount >= 10 && offer.price.amount <= 20
 The offer gtin is 1234567890123:
 
 ```groovy
-offer.gtin.raw == "123456789"
+offer.gtin == "123456789"
 ```
 
 ---
 The offer gtin starts with "123":
 
 ```groovy
-offer.gtin.raw.startsWith("123")
+offer.gtin.startsWith("123")
 ```
 
 (accepts values `123456789`, `1230987654`, `123123123`, `123`)
