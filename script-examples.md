@@ -39,6 +39,13 @@ offer.price.amount >= 10 && offer.price.amount <= 20
 ```
 
 ---
+The offer ID is HP 23H33EA:
+
+```groovy
+offer.id == "HP 23H33EA"
+```
+
+---
 The offer gtin is 1234567890123:
 
 ```groovy
